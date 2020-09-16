@@ -1,87 +1,84 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import Input from "./Input";
-import validateInput, {getCorrectPhone} from "../other/workWithData";
-import {inputValue, wasChanged, hasError, spanText} from '../other/types';
+import React from 'react'
+import PropTypes from 'prop-types'
+import Input from './Input'
+import validateInput, { getCorrectPhone } from '../other/workWithData'
+import { inputValue, wasChanged, hasError, spanText } from '../other/types'
 
 class Form extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor (props) {
+    super(props)
 
     this.state = {
       inputValue: {
-        ...inputValue,
+        ...inputValue
       },
       wasChanged: {
-        ...wasChanged,
+        ...wasChanged
       },
       hasError: {
-        ...hasError,
+        ...hasError
       },
       spanText: {
-        ...spanText,
+        ...spanText
       }
     }
   }
 
-  handleInput = (event) => {
-    const name = event.target.name;
-    const value = event.target.value;
+  handleInput = event => {
+    const name = event.target.name
+    const value = event.target.value
 
     this.setState(state => ({
       inputValue: {
         ...state.inputValue,
-        [name]: value,
+        [name]: value
       },
       wasChanged: {
         ...state.wasChanged,
-        [name]: true,
+        [name]: true
       },
       hasError: {
         ...state.hasError,
-        [name]: !validateInput(name, value),
-      },
-    }));
+        [name]: !validateInput(name, value)
+      }
+    }))
   }
 
   handleSubmit = (event) => {
-    event.preventDefault();
-
+    event.preventDefault()
 
     if (Object.values(this.state.hasError).includes(true)) {
-      this.props.setShowModal(true);
-      return;
+      this.props.setShowModal(true)
+      return
     }
 
-    const firstName = this.state.inputValue.firstName;
-    const secondName = this.state.inputValue.secondName;
-
-
+    const firstName = this.state.inputValue.firstName
+    const secondName = this.state.inputValue.secondName
 
     const correctPerson = {
       ...this.state.inputValue,
       phone: getCorrectPhone(this.state.inputValue.phone),
-      age: +this.state.inputValue.age,
+      age: +this.state.inputValue.age
     }
 
-    localStorage.setItem(`${firstName} ${secondName}`, JSON.stringify(correctPerson));
+    localStorage.setItem(`${firstName} ${secondName}`, JSON.stringify(correctPerson))
 
-    this.props.updateData(true);
+    this.props.updateData(true)
 
     this.setState({
       inputValue: {
-        ...inputValue,
+        ...inputValue
       },
       wasChanged: {
-        ...wasChanged,
+        ...wasChanged
       },
       hasError: {
-        ...hasError,
-      },
-    });
+        ...hasError
+      }
+    })
   }
 
-  render() {
+  render () {
     return (
       <form onSubmit={this.handleSubmit} autoComplete="off" className="form">
 
@@ -108,16 +105,13 @@ class Form extends React.Component {
         }
         <button type="submit" className="btn btn-primary">Добавить</button>
       </form>
-    );
+    )
   }
 }
 
-
 Form.propTypes = {
   setShowModal: PropTypes.func.isRequired,
-  updateData: PropTypes.func.isRequired,
+  updateData: PropTypes.func.isRequired
 }
 
-export default Form;
-
-
+export default Form

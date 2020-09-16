@@ -1,12 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-const InputField = ({name, handleInput, spanText, value, children, wasChanged, hasError}) => {
-  let isValid = '';
+const InputField = ({ name, handleInput, spanText, value, children, wasChanged, hasError }) => {
+  let isValid = ''
   if (wasChanged && !hasError) {
-    isValid = 'is-valid';
+    isValid = 'is-valid'
   } else if (wasChanged && hasError) {
-    isValid = 'is-invalid';
+    isValid = 'is-invalid'
   }
 
   return (
@@ -17,14 +17,14 @@ const InputField = ({name, handleInput, spanText, value, children, wasChanged, h
       </div>
 
       {children ? (
-          <select
-            className={`custom-select ${isValid}`}
-            name={name}
-            onChange={handleInput}
-            value={value}
-          >
-            {children}
-          </select>)
+        <select
+          className={`custom-select ${isValid}`}
+          name={name}
+          onChange={handleInput}
+          value={value}
+        >
+          {children}
+        </select>)
         : (
           <input
             type="text"
@@ -32,11 +32,11 @@ const InputField = ({name, handleInput, spanText, value, children, wasChanged, h
             name={name}
             onChange={handleInput}
             value={value || ''}
-            placeholder={`Введите значение`}
+            placeholder={'Введите значение'}
           />
         )}
     </div>
-  );
+  )
 }
 
 InputField.propTypes = {
@@ -48,6 +48,8 @@ InputField.propTypes = {
   ]).isRequired,
   handleInput: PropTypes.func.isRequired,
   children: PropTypes.any,
-};
+  wasChanged: PropTypes.bool,
+  hasError: PropTypes.bool
+}
 
-export default React.memo(InputField);
+export default React.memo(InputField)
