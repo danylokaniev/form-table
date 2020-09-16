@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import InputField from "./InputField";
-import validateInput from "../other/getData";
+import Input from "./Input";
+import validateInput, {getCorrectPhone} from "../other/workWithData";
 import {inputValue, wasChanged, hasError, spanText} from '../other/types';
 
 class Form extends React.Component {
@@ -56,7 +56,15 @@ class Form extends React.Component {
     const firstName = this.state.inputValue.firstName;
     const secondName = this.state.inputValue.secondName;
 
-    localStorage.setItem(`${firstName} ${secondName}`, JSON.stringify(this.state.inputValue));
+
+
+    const correctPerson = {
+      ...this.state.inputValue,
+      phone: getCorrectPhone(this.state.inputValue.phone),
+      age: +this.state.inputValue.age,
+    }
+
+    localStorage.setItem(`${firstName} ${secondName}`, JSON.stringify(correctPerson));
 
     this.props.updateData(true);
 
@@ -79,7 +87,7 @@ class Form extends React.Component {
 
         {
           Object.keys(this.state.inputValue).map(key => (
-            <InputField
+            <Input
               key={this.state.spanText[key]}
               name={key}
               handleInput={this.handleInput}
@@ -95,7 +103,7 @@ class Form extends React.Component {
                   <option value="female">Female</option>
                 </>
               )}
-            </InputField>
+            </Input>
           ))
         }
         <button type="submit" className="btn btn-primary">Добавить</button>

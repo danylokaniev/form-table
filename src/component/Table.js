@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Table = ({ people }) => {
+const Table = ({people, setSortField}) => {
   return (
     !people.length ? (
         <p className="text-center font-weight-bold">Для создания таблицы, добавьте хотя бы одно поле</p>
@@ -11,11 +11,31 @@ const Table = ({ people }) => {
 
           <thead>
           <tr>
-            <th scope="col">First name</th>
-            <th scope="col">Second name</th>
-            <th scope="col">Phone</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Age</th>
+            <th scope="col" className="field-name">
+              <button type="button" className="btn btn-outline-secondary"
+                      onClick={() => setSortField('firstName')}>First name
+              </button>
+            </th>
+            <th scope="col" className="field-name">
+              <button type="button" className="btn btn-outline-secondary"
+                      onClick={() => setSortField('secondName')}>Second name
+              </button>
+            </th>
+            <th scope="col" className="field-name">
+              <button type="button" className="btn btn-outline-secondary"
+                      onClick={() => setSortField('phone')}>Phone
+              </button>
+            </th>
+            <th scope="col" className="field-name">
+              <button type="button" className="btn btn-outline-secondary"
+                      onClick={() => setSortField('gender')}>Gender
+              </button>
+            </th>
+            <th scope="col" className="field-name">
+              <button type="button" className="btn btn-outline-secondary"
+                      onClick={() => setSortField('age')}>Age
+              </button>
+            </th>
           </tr>
           </thead>
 
@@ -42,7 +62,7 @@ Table.propTypes = {
       secondName: PropTypes.string.isRequired,
       phone: PropTypes.string.isRequired,
       gender: PropTypes.string.isRequired,
-      age: PropTypes.string.isRequired,
+      age: PropTypes.number.isRequired,
     }
   ))
 };

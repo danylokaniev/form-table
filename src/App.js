@@ -1,5 +1,5 @@
-import React, {useEffect,useState} from 'react';
-import {getPeople} from "./other/getData";
+import React, {useEffect, useState} from 'react';
+import {getPeople, sortPeople} from "./other/workWithData";
 import Modal from "./component/Modal";
 import Form from "./component/Form";
 import Table from "./component/Table";
@@ -9,13 +9,22 @@ import "./styles/main.css";
 function App() {
   const [showModal, setShowModal] = useState(true);
   const [shouldUpdate, updateData] = useState(false);
-  let people = getPeople();
+  const [sortField, setSortField] = useState("firstName");
+  const [sortDirection, setSortDirection] = useState(true);
+
+  let people = sortPeople(getPeople(), sortField, sortDirection);
+
+  const sort = (newSortField) => {
+    if (newSortField !== sortField) {
+      setSortField(newSortField);
+    } else {
+      setSortDirection(!sortDirection);
+    }
+  }
 
   useEffect(function () {
-    people = getPeople();
     updateData(false);
   }, [shouldUpdate]);
-
 
   return (
     <>
@@ -27,7 +36,7 @@ function App() {
       </p>
       <Form setShowModal={setShowModal} updateData={updateData}/>
       <Modal showModal={showModal} setShowModal={setShowModal}/>
-      <Table people={people}/>
+      <Table people={people} setSortField={sort}/>
     </>
   );
 }

@@ -43,5 +43,32 @@ export function getPeople() {
   return people;
 }
 
+export function getCorrectPhone(phoneNumber) {
+  const number = phoneNumber.match(/\d/g);
+  return `${number[0] + number[1] + ' '
+  + number[2] + number[3] + number[4] + ' '
+  + number[5] + number[6] + ' '
+  + number[7] + number[8]}`;
+}
+
+export function sortPeople(people, sortField, sortDirection) {
+  if (!people.length) {
+    return [];
+  }
+  const sortedPeople = [...people];
+  let sign = -1;
+  if (sortDirection) {
+    sign = 1;
+  }
+  switch (typeof sortedPeople[0][sortField]) {
+    case 'number':
+      sortedPeople.sort((a, b) => sign * (a[sortField] - b[sortField]));
+      break;
+    default:
+      sortedPeople.sort((a, b) => sign * a[sortField].localeCompare(b[sortField]));
+      break;
+  }
+  return sortedPeople;
+}
 
 export default validate;
