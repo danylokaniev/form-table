@@ -2,16 +2,16 @@ import { inputValue } from './types'
 
 function validate (name, value) {
   let reg = ''
+  let phoneLength = 0
 
   switch (name) {
     case 'firstName':
     case 'secondName':
-      reg = /[^A-Za-zа-яА-Я\s.-]+/g
+      reg = /[^A-Za-zа-яА-ЯіІїЇєЄ\s.-]+/g
       return !reg.test(value)
     case 'phone':
       reg = /[^0-9\s-]+/g
-      // eslint-disable-next-line no-case-declarations
-      const phoneLength = value.replace(/\D/g, '').length
+      phoneLength = value.replace(/\D/g, '').length
       return !reg.test(value) && phoneLength === 9
     case 'age':
       reg = /[^0-9]+/g
@@ -24,11 +24,13 @@ function validate (name, value) {
 }
 
 export function hasSameType (person) {
+  // ?
   for (const key in inputValue) {
-    if (!person.hasOwnProperty(key)) {
+    if (Object.prototype.hasOwnProperty.call(person, key)) {
       return false
     }
   }
+
   return true
 }
 
@@ -36,9 +38,7 @@ export function getPeople () {
   const people = []
   for (const person of Object.keys(localStorage)) {
     const user = JSON.parse(localStorage.getItem(person))
-    if (hasSameType(user)) {
-      people.push(user)
-    }
+    people.push(user)
   }
   return people
 }

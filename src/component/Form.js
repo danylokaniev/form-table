@@ -49,11 +49,20 @@ class Form extends React.Component {
 
     if (Object.values(this.state.hasError).includes(true)) {
       this.props.setShowModal(true)
+
+      this.setState({
+        wasChanged: {
+          firstName: true,
+          secondName: true,
+          phone: true,
+          gender: true,
+          age: true
+        }
+      })
       return
     }
 
-    const firstName = this.state.inputValue.firstName
-    const secondName = this.state.inputValue.secondName
+    const { firstName, secondName } = this.state.inputValue
 
     const correctPerson = {
       ...this.state.inputValue,
@@ -95,7 +104,7 @@ class Form extends React.Component {
             >
               {key === 'gender' && (
                 <>
-                  <option value="">Выберете пол ...</option>
+                  <option value="">Select gender ...</option>
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </>
@@ -103,7 +112,8 @@ class Form extends React.Component {
             </Input>
           ))
         }
-        <button type="submit" className="btn btn-primary">Добавить</button>
+        <button type="submit" className="btn btn-primary">Add</button>
+
       </form>
     )
   }

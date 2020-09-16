@@ -4,10 +4,14 @@ import Modal from './component/Modal'
 import Form from './component/Form'
 import Table from './component/Table'
 import './styles/main.css'
+import DeleteModal from './component/DeleteModal'
 
 function App () {
   const [showModal, setShowModal] = useState(true)
+  const [showDeleteModal, setShowDeleteModal] = useState(false)
+
   const [shouldUpdate, updateData] = useState(false)
+
   const [sortField, setSortField] = useState('firstName')
   const [sortDirection, setSortDirection] = useState(true)
 
@@ -34,8 +38,9 @@ function App () {
         </a>
       </p>
       <Form setShowModal={setShowModal} updateData={updateData}/>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
-      <Table people={people} setSortField={sort} updateData={updateData}/>
+      <Table people={people} setSortField={sort} updateData={updateData} setShowDeleteModal={setShowDeleteModal}/>
+      <Modal showModal={showModal} setShowModal={setShowModal}/>
+      <DeleteModal showDeleteModal={showDeleteModal} setShowDeleteModal={setShowDeleteModal} updateData={updateData}/>
     </>
   )
 }

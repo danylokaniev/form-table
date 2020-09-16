@@ -24,6 +24,19 @@
     width: 75%;
     margin: 0 auto;
 }
+
 .field-name {
+    text-align: center;
+}
+
+.button-field {
+    padding: 0;
+}
+
+.btn-light {
+    border-radius: 50%;
+    margin: 0;
+}
+.table {
     text-align: center;
 }

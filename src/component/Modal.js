@@ -8,42 +8,38 @@ const Modal = ({ showModal, setShowModal }) => {
       <div className="modal-dialog">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">Корректно заполните все поля</h5>
+            <h5 className="modal-title">Fill in all fields correctly</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close"
               onClick={() => setShowModal(false)}>
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
           <div className="modal-body">
-            <p className="modal-text">Эта форма создана для добавление данных в таблицу. Чтобы добавить новое поле,
-              необходимо корректно
-              заполнить ВСЕ поля. А именно:
+            <p className="modal-text">This form is designed to add data to a table. To add a new field,
+              must be correct
+              filled in ALL fields. Namely:
             </p>
 
             <ul>
 
-              <li>First Name: разрешены все буквенные символы, пробел, точка, тире.<br/>
-                (регулярное выражение -/[^A-Za-zа-яА-Я\s.-]+/g)
+              <li>First Name: all alphabetic characters are allowed, space, period, dash.<br/>
               </li>
 
-              <li>Second Name: разрешены все буквенные символы, пробел, &#34;` . &#34;`, &#34;`-&#34;`.<br/>
-                (регулярное выражение -/[^A-Za-z\s.-]+/g)
+              <li>Second Name: all alphabetic characters are allowed, space, period, dash.<br/>
               </li>
 
-              <li>Phone: разрешены только цифры, пробел, и &#34;`-&#34;`. Количество цифр - 9.<br/>
-                (регулярное выражение - /[^0-9\s-]+/g)
+              <li>Phone: numbers, spaces, and dashes are allowed. The number of digits is 9.<br/>
               </li>
 
-              <li>Age: разрешены только цифры. Максимальный возраст - 120.<br/>
-                (регулярное выражение - /[^0-9]+/g)
+              <li>Age: only numbers are allowed. The maximum age is 120.<br/>
               </li>
 
-              <li>Gender: Нужно выбрать один из предложенных вариантов.<br/></li>
+              <li>Gender: You need to choose one of the proposed options.<br/></li>
             </ul>
           </div>
 
           <div className="modal-footer">
-            <button type="button" className="btn btn-primary" onClick={() => setShowModal(false)}>Понятно</button>
+            <button type="button" className="btn btn-primary" onClick={() => setShowModal(false)}>Clear</button>
           </div>
 
         </div>

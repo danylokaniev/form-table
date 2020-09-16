@@ -32,7 +32,7 @@ const InputField = ({ name, handleInput, spanText, value, children, wasChanged, 
             name={name}
             onChange={handleInput}
             value={value || ''}
-            placeholder={'Введите значение'}
+            placeholder={'Enter value'}
           />
         )}
     </div>
