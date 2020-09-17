@@ -1,8 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Input from './Input'
-import validateInput, { getCorrectPhone } from '../other/workWithData'
-import { inputValue, wasChanged, hasError, spanText } from '../other/types'
+import validateInput, { getCorrectPhone } from '../../other/workWithData'
+import { inputValue, wasChanged, hasError, spanText } from '../../other/types'
 
 class Form extends React.Component {
   constructor (props) {

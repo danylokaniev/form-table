@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import { getPeople, sortPeople } from './other/workWithData'
-import Modal from './component/Modal'
-import Form from './component/Form'
-import Table from './component/Table'
+import Modal from './component/Modal/Modal'
+import Form from './component/Form/Form'
+import Table from './component/Table/Table'
 import './styles/main.css'
-import DeleteModal from './component/DeleteModal'
+import DeleteModal from './component/Modal/DeleteModal'
 
 function App () {
   const [showModal, setShowModal] = useState(true)

@@ -1,5 +1,5 @@
 import React from 'react'
-import { inputValue, spanText } from '../other/types'
+import { inputValue, spanText } from '../../other/types'
 import PropTypes from 'prop-types'
 
 const TableHead = ({ setSortField, setShowDeleteModal }) => {
